@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>core.jee</groupId>
-  <artifactId>EmployeeManagementServerApplication</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>ShoppingCartServer</artifactId>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
 
-  <name>EmployeeManagementServerApplication</name>
+  <name>ShoppingCartServer</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>
@@ -56,23 +56,6 @@
             <configuration>
               <outputDirectory>/usr/local/opt/wildfly-as/libexec/standalone/deployments</outputDirectory>
               <finalName>${project.name}</finalName>
-            </configuration>
-          </execution>
-          <execution>
-            <id>build-business-jar</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <classifier>client</classifier>
-              <outputDirectory>${basedir}/target</outputDirectory>
-              <finalName>${project.name}</finalName>
-              <directory>${basedir}/src/main/java</directory>
-              <includes>
-                <include>**/**Service*</include>
-                <include>**/domain/*</include>
-              </includes>
             </configuration>
           </execution>
         </executions>
