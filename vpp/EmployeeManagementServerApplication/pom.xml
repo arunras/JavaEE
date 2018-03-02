@@ -5,8 +5,7 @@
   <groupId>core.jee</groupId>
   <artifactId>EmployeeManagementServerApplication</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-
+  <packaging>jar</packaging> 
   <name>EmployeeManagementServerApplication</name>
   <url>http://maven.apache.org</url>
 
@@ -21,7 +20,14 @@
         <artifactId>javax.inject</artifactId>
         <version>1</version>
     </dependency>
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
+
 
 
   <build>
@@ -58,6 +64,7 @@
               <finalName>${project.name}</finalName>
             </configuration>
           </execution>
+          <!-- For building client api
           <execution>
             <id>build-business-jar</id>
             <phase>package</phase>
@@ -74,7 +81,8 @@
                 <include>**/domain/*</include>
               </includes>
             </configuration>
-          </execution>
+          </execution>    
+          -->
         </executions>
       </plugin>
     </plugins>

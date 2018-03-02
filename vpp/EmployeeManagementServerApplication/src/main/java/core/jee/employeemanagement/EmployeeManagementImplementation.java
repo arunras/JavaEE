@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import core.jee.employeemanagement.dataaccess.EmployeeDataAccess;
+import core.jee.employeemanagement.dataaccess.ProductionDao;
+import core.jee.employeemanagement.dataaccess.TestingDao;
 import core.jee.employeemanagement.domain.Employee;
 
 @Stateless

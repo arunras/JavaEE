@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
 
 import core.jee.employeemanagement.domain.Employee;
 
 @Stateless
-public class EmployeeDataAccessImplementation implements EmployeeDataAccess {
+@Alternative
+@TestingDao
+public class EmployeeDataAccessTestingVersion implements EmployeeDataAccess {
 
-  public EmployeeDataAccessImplementation() {
+  public EmployeeDataAccessTestingVersion() {
     // TODO Auto-generated constructor stub
   }
 

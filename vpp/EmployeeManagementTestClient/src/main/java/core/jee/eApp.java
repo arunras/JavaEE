@@ -10,7 +10,7 @@ import javax.naming.NamingException;
 import core.jee.employeemanagement.EmployeeManagementService;
 import core.jee.employeemanagement.domain.Employee;
 
-public class Main {
+public class eApp {
   public static void main(String[] args) throws NamingException {
     Properties jndiProperties = new Properties();
     jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
