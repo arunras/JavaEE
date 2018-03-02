@@ -3,6 +3,7 @@ package core.jee.employeemanagement.domain;
 import java.io.Serializable;
 
 public class Employee implements Serializable {
+  private static final long serialVersionUID = 1L;
   private String firstName;
   private String surname;
   private String jobRole;
