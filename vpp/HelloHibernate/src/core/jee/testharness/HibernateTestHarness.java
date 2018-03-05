@@ -20,10 +20,9 @@ public class HibernateTestHarness
 		Transaction tx = session.beginTransaction();
 
 	  //Do something
-    Student student = (Student) session.get(Student.class, 3);
-    student.setTutor("Dave Salo");
+    Student student = new Student("Kathleen Heddle");
+    session.save(student);
     
-    System.out.println(student);
 		
 		tx.commit();
 		session.close();
