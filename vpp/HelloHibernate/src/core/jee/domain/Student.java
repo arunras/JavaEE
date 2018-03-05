@@ -49,4 +49,13 @@ public class Student {
 	public String toString() {
 		return this.name;
 	}
+	
+	public int getId() {
+		return this.id;
+	}
+
+	public void setTutor(String tutorName) {
+		this.tutorName = tutorName;
+		
+	}	
 }

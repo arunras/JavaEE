@@ -15,18 +15,15 @@ public class HibernateTestHarness
 
 	public static void main(String[] args)
 	{
-		Student testStudent = new Student("Jessica Ennis", "Toni Minichiello");
-
-		System.out.println(testStudent + "has a grade point of " + testStudent.calculateGradePointAverage());
-		
-		// save the student to the database
-
 		SessionFactory sf = getSessionFactory();
 		Session session = sf.openSession();
-
 		Transaction tx = session.beginTransaction();
-		session.save(testStudent);
-		
+
+	  //Do something
+    Student student = (Student) session.get(Student.class, 3);
+    student.setTutor("Dave Salo");
+    
+    System.out.println(student);
 		
 		tx.commit();
 		session.close();
