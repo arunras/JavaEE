@@ -17,11 +17,12 @@
          -->
             
         <property name="show_sql">true</property>
-        <property name="format_sql">false</property>
+        <property name="format_sql">true</property>
         <property name="use_sql_comments">false</property>
         <property name="hbm2ddl.auto">update</property>
 
    		<mapping class="core.jee.domain.Student"/>
+   		<mapping class="core.jee.domain.Tutor"/>
     </session-factory>
 
 </hibernate-configuration>

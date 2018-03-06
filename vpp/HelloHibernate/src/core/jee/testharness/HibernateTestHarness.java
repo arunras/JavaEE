@@ -8,6 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import core.jee.domain.Student;
+import core.jee.domain.Tutor;
 
 public class HibernateTestHarness 
 {
@@ -19,11 +20,26 @@ public class HibernateTestHarness
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
 
-	  //Do something
-    Student student = new Student("Kathleen Heddle");
-    session.save(student);
+    /*
+	  // create a new supervisor, and a student
+    Student student = new Student("Alicia Coutts");
+    Tutor newTutor = new Tutor("DEF456", "Michael Jung", 939383);
     
-		
+    // make the student be supervised by that tutor
+    student.allocateSupervisor(newTutor);
+
+    // print out the supervisor for this tutor
+    System.out.println(student.getSupervisorName());
+
+    session.save(student);
+    session.save(newTutor);
+    */
+
+    Student student = (Student) session.get(Student.class, 1);
+    System.out.println(student);
+
+    student.allocateSupervisor(null);
+
 		tx.commit();
 		session.close();
 	}

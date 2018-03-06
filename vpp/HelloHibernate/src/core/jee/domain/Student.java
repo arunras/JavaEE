@@ -1,72 +1,84 @@
 package core.jee.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
- * Represents a Student enrolled in the college management system (CMS)
+ * Represents a Student enrolled in the college management
+ * system (CMS)
  */
-
 @Entity
-@Table(name="TBL_STUDENT")
-public class Student {
+public class Student
+{
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private String enrollmentID;
-	private String name;
-	private String tutorName; // This will become a class soon
 	
-	@Transient
-	private double averageScoreAcrossAllExams;
-	
-	@Column(name="NUM_COURSES")
-	private Integer numberOfCourses;
+    private String enrollmentID;
+    private String name;
 
-	public Student() {
-		/* Required by JPA */}
+    @ManyToOne
+    @JoinColumn(name="TUTOR_FK")
+    private Tutor supervisor;
+    
+    /*
+     * Required by Hibernate
+     */
+    public Student()
+    {
+    	
+    }
+    
+    /**
+     * Initialises a student with a particular tutor
+     */
+    public Student(String name, Tutor supervisor)
+    {
+    	this.name = name;
+    	this.supervisor = supervisor;
+    }
+    
+    /**
+     * Initialises a student with no pre set tutor
+     */
+    public Student(String name)
+    {
+    	this.name = name;
+    	this.supervisor = null;
+    }
+    
+    public double calculateGradePointAverage()
+    {
+    	// some complex business logic!
+    	// we won't need this method on the course, BUT it is import
+    	// to remember that classes aren't just get/set pairs - we expect
+    	// business logic in here as well.
+    	return 0;
+    }
+    
+    public void allocateSupervisor(Tutor newSupervisor) {
+      this.supervisor = newSupervisor;
+    }
 
-	/**
-	 * Initialises a student with a particular tutor
-	 */
-	public Student(String name, String tutorName) {
-		this.name = name;
-		this.tutorName = tutorName;
-	}
+    public String getSupervisorName() {
+      return this.supervisor.getName();
+    }
 
-	/**
-	 * Initialises a student with no pre set tutor
-	 */
-	public Student(String name) {
-		this.name = name;
-		this.tutorName = null;
-		this.numberOfCourses = 7;
-	}
+    public Tutor getSupervisor() {
+      return this.supervisor;
+    }
 
-	public double calculateGradePointAverage() {
-		// some complex business logic!
-		// we won't need this method on the course, BUT it is import
-		// to remember that classes aren't just get/set pairs - we expect
-		// business logic in here as well.
-		return 0;
-	}
-
-	@Override
-	public String toString() {
-		return this.name;
-	}
-	
-	public int getId() {
-		return this.id;
-	}
-
-	public void setTutor(String tutorName) {
-		this.tutorName = tutorName;
-		
-	}	
+    public String toString()
+    {
+    	return this.name;
+    }
+    
+    public int getId()
+    {
+    	return this.id;
+    }
 }
