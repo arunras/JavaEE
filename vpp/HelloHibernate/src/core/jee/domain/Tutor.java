@@ -2,16 +2,16 @@ package core.jee.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKey;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
 
 @Entity
 public class Tutor {
@@ -27,7 +27,11 @@ public class Tutor {
   //@OrderColumn(name="student_order")
   //@MapKey(name="enrollmentID")
   //@JoinColumn(name="TUTOR_FK")
-  private List<Student> supervisionGroup;
+  private Set<Student> supervisionGroup;
+
+  @ManyToMany(mappedBy="qualifiedTutors")
+  private Set<Subject> subjectsQualifiedToTeach;
+
 
   public Tutor() {/*Required by Hiberante*/}
 
@@ -37,20 +41,30 @@ public class Tutor {
     this.staffId = staffId;
     this.name = name;
     this.salary = salary;
-    this.supervisionGroup = new ArrayList<>();
+    this.supervisionGroup = new HashSet<>();
+    this.subjectsQualifiedToTeach = new HashSet<>();
+  }
+
+  public void addSubjectToQualifications(Subject subject) {
+    this.subjectsQualifiedToTeach.add(subject);
+    subject.getQualifiedTutors().add(this);
   }
 
   public void addStudentToSupervisionGroup(Student student) {
     this.supervisionGroup.add(student);
     student.allocateSupervisor(this);
   }
+  
+  public Set<Subject> getSubjects() {
+  		return this.subjectsQualifiedToTeach;
+  }
 
-  public List<Student> getSupervisionGroup() {
-    List<Student> unmodifiable = Collections.unmodifiableList(this.supervisionGroup);
+  public Set<Student> getSupervisionGroup() {
+    Set<Student> unmodifiable = Collections.unmodifiableSet(this.supervisionGroup);
     return unmodifiable;
   }
   
-  public List<Student> getModifiableVisionGroup() {
+  public Set<Student> getModifiableVisionGroup() {
   		return this.supervisionGroup;
   }
 

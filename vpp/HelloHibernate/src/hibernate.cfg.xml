@@ -23,6 +23,7 @@
 
    		<mapping class="core.jee.domain.Student"/>
    		<mapping class="core.jee.domain.Tutor"/>
+   		<mapping class="core.jee.domain.Subject"/>
     </session-factory>
 
 </hibernate-configuration>
