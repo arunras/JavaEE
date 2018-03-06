@@ -23,10 +23,10 @@ public class Tutor {
   private String name;
   private int salary;
 
-  @OneToMany
-  @OrderColumn(name="student_order")
-  @MapKey(name="enrollmentID")
-  @JoinColumn(name="TUTOR_FK")
+  @OneToMany(mappedBy="supervisor")
+  //@OrderColumn(name="student_order")
+  //@MapKey(name="enrollmentID")
+  //@JoinColumn(name="TUTOR_FK")
   private List<Student> supervisionGroup;
 
   public Tutor() {/*Required by Hiberante*/}
@@ -42,17 +42,24 @@ public class Tutor {
 
   public void addStudentToSupervisionGroup(Student student) {
     this.supervisionGroup.add(student);
+    student.allocateSupervisor(this);
   }
 
   public List<Student> getSupervisionGroup() {
     List<Student> unmodifiable = Collections.unmodifiableList(this.supervisionGroup);
     return unmodifiable;
   }
-
-
-
+  
+  public List<Student> getModifiableVisionGroup() {
+  		return this.supervisionGroup;
+  }
 
   public String getName() {
     return this.name;
+  }
+
+  @Override
+  public String toString() {
+    return "Tutor: " + this.name + " (" + this.staffId + ")";
   }
 }

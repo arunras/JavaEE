@@ -20,11 +20,11 @@ public class Student
 	
     private String enrollmentID;
     private String name;
-/*
+
     @ManyToOne
     @JoinColumn(name="TUTOR_FK")
     private Tutor supervisor;
-*/
+
     /*
      * Required by Hibernate
      */
@@ -36,13 +36,13 @@ public class Student
     /**
      * Initialises a student with a particular tutor
      */
-/*
+
     public Student(String name, Tutor supervisor)
     {
     	this.name = name;
     	this.supervisor = supervisor;
     }
-*/   
+   
     /**
      * Initialises a student with no pre set tutor
      */
@@ -50,7 +50,7 @@ public class Student
     {
     	this.name = name;
       this.enrollmentID = enrollmentID;
- //   	this.supervisor = null;
+    	this.supervisor = null;
     }
     
     public double calculateGradePointAverage()
@@ -61,9 +61,10 @@ public class Student
     	// business logic in here as well.
     	return 0;
     }
-/*  
+  
     public void allocateSupervisor(Tutor newSupervisor) {
       this.supervisor = newSupervisor;
+      newSupervisor.getModifiableVisionGroup().add(this);
     }
 
     public String getSupervisorName() {
@@ -73,7 +74,7 @@ public class Student
       return this.supervisor;
     }
 
-*/
+
     public String toString()
     {
     	return this.name;
