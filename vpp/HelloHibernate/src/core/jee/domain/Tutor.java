@@ -1,9 +1,17 @@
 package core.jee.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 @Entity
 public class Tutor {
@@ -15,6 +23,12 @@ public class Tutor {
   private String name;
   private int salary;
 
+  @OneToMany
+  @OrderColumn(name="student_order")
+  @MapKey(name="enrollmentID")
+  @JoinColumn(name="TUTOR_FK")
+  private List<Student> supervisionGroup;
+
   public Tutor() {/*Required by Hiberante*/}
 
   // "Business constructor"
@@ -23,7 +37,20 @@ public class Tutor {
     this.staffId = staffId;
     this.name = name;
     this.salary = salary;
+    this.supervisionGroup = new ArrayList<>();
   }
+
+  public void addStudentToSupervisionGroup(Student student) {
+    this.supervisionGroup.add(student);
+  }
+
+  public List<Student> getSupervisionGroup() {
+    List<Student> unmodifiable = Collections.unmodifiableList(this.supervisionGroup);
+    return unmodifiable;
+  }
+
+
+
 
   public String getName() {
     return this.name;

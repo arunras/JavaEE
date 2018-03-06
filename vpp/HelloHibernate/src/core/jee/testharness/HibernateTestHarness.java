@@ -1,5 +1,7 @@
 package core.jee.testharness;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,11 +36,31 @@ public class HibernateTestHarness
     session.save(student);
     session.save(newTutor);
     */
+    
 
-    Student student = (Student) session.get(Student.class, 1);
-    System.out.println(student);
+    /*
+    Tutor newTutor = new Tutor("ABC844", "Adrian Nattan", 387683);
 
-    student.allocateSupervisor(null);
+    Student s1 = new Student("Rebecca Soni", "1-SON-2012");
+    Student s2 = new Student("Zou Kai", "2-KAI-2009");
+    Student s3 = new Student("Chris Hoy", "3-HOY-1997");
+
+    session.save(s1);
+    session.save(s2);
+    session.save(s3);
+    session.save(newTutor);
+    
+    newTutor.addStudentToSupervisionGroup(s1);       
+    newTutor.addStudentToSupervisionGroup(s2);
+    newTutor.addStudentToSupervisionGroup(s3);
+    */
+
+    Tutor myTutor = (Tutor) session.get(Tutor.class, 1);
+    List<Student> students = myTutor.getSupervisionGroup();
+    for (Student next : students) {
+      System.out.println(next);
+    }
+
 
 		tx.commit();
 		session.close();
