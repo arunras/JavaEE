@@ -1,11 +1,10 @@
 package core.jee.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +22,7 @@ public class Tutor {
   private String name;
   private int salary;
 
-  @OneToMany(mappedBy="supervisor")
+  @OneToMany(mappedBy="supervisor", cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
   //@OrderColumn(name="student_order")
   //@MapKey(name="enrollmentID")
   //@JoinColumn(name="TUTOR_FK")
@@ -76,4 +75,9 @@ public class Tutor {
   public String toString() {
     return "Tutor: " + this.name + " (" + this.staffId + ")";
   }
+
+	public void createStudentAndAddToSupervisionGroup(String studentName, String enrollmentId) {
+		Student student = new Student(studentName, enrollmentId);
+		this.addStudentToSupervisionGroup(student);
+	}
 }
