@@ -1,5 +1,6 @@
 package core.jee.domain;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,9 @@ public class Student
     @ManyToOne
     @JoinColumn(name="TUTOR_FK")
     private Tutor supervisor;
+    
+    @Embedded
+    private Address address;
 
     /*
      * Required by Hibernate
@@ -33,24 +37,21 @@ public class Student
     	
     }
     
-    /**
-     * Initialises a student with a particular tutor
-     */
 
-    public Student(String name, Tutor supervisor)
-    {
-    	this.name = name;
-    	this.supervisor = supervisor;
-    }
-   
     /**
      * Initialises a student with no pre set tutor
      */
-    public Student(String name, String enrollmentID)
-    {
-    	this.name = name;
-      this.enrollmentID = enrollmentID;
-    	this.supervisor = null;
+    public Student(String name, String enrollmentID, String street, String city, String zip) {
+    		this.name = name;
+    		this.enrollmentID = enrollmentID;
+    		this.supervisor = null;
+    		this.address = new Address(street, city, zip);
+    }
+    
+    public Student(String name, String enrollmentID) {
+    		this.name = name;
+    		this.enrollmentID = enrollmentID;
+    		this.address = null;
     }
     
     public double calculateGradePointAverage()
@@ -77,7 +78,7 @@ public class Student
 
     public String toString()
     {
-    	return this.name;
+    	return this.name + " lives at: " + this.address;
     }
     
     public int getId()

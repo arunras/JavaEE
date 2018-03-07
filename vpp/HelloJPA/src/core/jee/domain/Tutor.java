@@ -76,8 +76,8 @@ public class Tutor {
     return "Tutor: " + this.name + " (" + this.staffId + ")";
   }
 
-	public void createStudentAndAddToSupervisionGroup(String studentName, String enrollmentId) {
-		Student student = new Student(studentName, enrollmentId);
+	public void createStudentAndAddToSupervisionGroup(String studentName, String enrollmentId, String street, String city, String zip) {
+		Student student = new Student(studentName, enrollmentId, street, city, zip);
 		this.addStudentToSupervisionGroup(student);
 	}
 }
