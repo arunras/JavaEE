@@ -61,8 +61,7 @@ public class HibernateTestHarness
     Student s2 = new Student("Zou Kai", "2-KAI-2009");
     Student s3 = new Student("Chris Hoy", "3-HOY-1997");
 
-    session.save(s1);
-    session.save(s2);
+    session.save(s1); session.save(s2);
     session.save(s3);
     session.save(newTutor);
     
