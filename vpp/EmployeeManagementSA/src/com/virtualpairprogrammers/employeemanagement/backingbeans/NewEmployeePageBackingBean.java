@@ -22,7 +22,7 @@ public class NewEmployeePageBackingBean {
     Employee employee = new Employee(firstName, surname, jobRole, salary);
     try {
     		service.registerEmployee(employee);
-    		return "employeeCreated";
+    		return "allEmployees";
     } catch(ServiceUnavailableException e) {
       return "employeeNotCreated";
     }
