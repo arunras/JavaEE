@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+  <f:metadata>
+    <f:viewParam name="employeeId" value="#{findEmployeePageBean.employeeId}" />    
+  </f:metadata>  
+</h:head>
+
+<h:body>
+  <h3>Employee Detail</h3>
+  <p>Name: #{findEmployeePageBean.selectedEmployee.firstName} #{findEmployeePageBean.selectedEmployee.surname}</p>
+  <p>Surname: #{findEmployeePageBean.selectedEmployee.surname}</p>
+  <p>Job Role: #{findEmployeePageBean.selectedEmployee.jobRole}</p>
+  <p>Salary: #{findEmployeePageBean.selectedEmployee.salary}</p>
+</h:body>
+</html>

@@ -17,7 +17,10 @@
       <h:column>
         <f:facet name="header">Surname</f:facet>
         <f:facet name="footer">Surname</f:facet>
-        #{employee.surname}
+        <h:outputLink value="employeeDetail2.jsf">
+          <f:param name="employeeId" value="#{employee.id}" />
+          #{employee.surname}
+        </h:outputLink>
       </h:column> 
       <h:column>
         <f:facet name="header">Job Role</f:facet>
