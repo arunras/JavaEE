@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.component.UIData;
+
+import org.primefaces.component.api.UIData;
 
 import com.virtualpairprogrammers.employeemanagement.EmployeeManagementServiceLocal;
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;

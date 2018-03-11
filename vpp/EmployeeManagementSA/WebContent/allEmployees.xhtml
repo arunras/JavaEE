@@ -1,38 +1,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core">
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+
+  <!-- Required by Primefaces -->
+  <h:head></h:head>
       
   <h:body>
     <h3>All Employees</h3>
     <h:form>
-      <h:dataTable value="#{allEmployeesPageBean.allEmployees}" var="employee"
+      <p:dataTable value="#{allEmployeesPageBean.allEmployees}" var="employee"
         binding="#{allEmployeesPageBean.dataTable}">
-      <h:column>
-        <f:facet name="header">First Name</f:facet>
-        <f:facet name="footer">First Name</f:facet>
+        <p:column headerText="First Name" sortBy="#{employee.firstName}" filterBy="#{employee.firstName}">
           <h:commandLink action="#{allEmployeesPageBean.showEmployee}">
             #{employee.firstName}
           </h:commandLink>
-      </h:column> 
-      <h:column>
-        <f:facet name="header">Surname</f:facet>
-        <f:facet name="footer">Surname</f:facet>
-        <h:outputLink value="employeeDetail2.jsf">
-          <f:param name="employeeId" value="#{employee.id}" />
-          #{employee.surname}
-        </h:outputLink>
-      </h:column> 
-      <h:column>
-        <f:facet name="header">Job Role</f:facet>
-        <f:facet name="footer">Job Role</f:facet>
-        #{employee.jobRole}
-      </h:column> 
-      <h:column>
-        <f:facet name="header">Salary</f:facet>
-        <f:facet name="footer">Salary</f:facet>
-        #{employee.salary}
-      </h:column> 
-    </h:dataTable>
+        </p:column> 
+        <p:column headerText="Surname" sortBy="#{employee.surname}" filterBy="#{employee.surname}">
+          <h:outputLink value="employeeDetail2.jsf">
+            <f:param name="employeeId" value="#{employee.id}" />
+            #{employee.surname}
+          </h:outputLink>
+        </p:column> 
+        <p:column headerText="Job Role" sortBy="#{employee.jobRole}" filterBy="#{employee.jobRole}">
+          #{employee.jobRole}
+        </p:column> 
+        <p:column headerText="Salary" sortBy="#{employee.salary}" filterBy="#{employee.salary}">
+          #{employee.salary}
+        </p:column> 
+      </p:dataTable>
     </h:form>
   </h:body>
 </html>
