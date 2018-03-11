@@ -2,6 +2,8 @@ package com.virtualpairprogrammers.employeemanagement.backingbeans;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.virtualpairprogrammers.employeemanagement.EmployeeManagementServiceLocal;
 import com.virtualpairprogrammers.employeemanagement.ServiceUnavailableException;
@@ -12,6 +14,9 @@ public class NewEmployeePageBackingBean {
   private String firstName;
   private String surname;
   private String jobRole;
+
+  @Min(value=1, message="Salary must be greater than or equal to 1")
+  @Max(value=100_000, message="Salary must be less than 100,000")
   private int salary;
 
   @EJB

@@ -1,34 +1,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:p="http://primefaces.org/ui">
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+
 
   <!-- Required by Primefaces -->
-  <h:head></h:head>
+  <h:head>
+    <h:outputStylesheet library="css" name="main.css" />   
+    <h:outputScript library="js" name="common.js" />
+  </h:head>
       
   <h:body>
-    <h3>All Employees</h3>
-    <h:form>
-      <p:dataTable value="#{allEmployeesPageBean.allEmployees}" var="employee"
-        binding="#{allEmployeesPageBean.dataTable}">
-        <p:column headerText="First Name" sortBy="#{employee.firstName}" filterBy="#{employee.firstName}">
-          <h:commandLink action="#{allEmployeesPageBean.showEmployee}">
-            #{employee.firstName}
-          </h:commandLink>
-        </p:column> 
-        <p:column headerText="Surname" sortBy="#{employee.surname}" filterBy="#{employee.surname}">
-          <h:outputLink value="employeeDetail2.jsf">
-            <f:param name="employeeId" value="#{employee.id}" />
-            #{employee.surname}
-          </h:outputLink>
-        </p:column> 
-        <p:column headerText="Job Role" sortBy="#{employee.jobRole}" filterBy="#{employee.jobRole}">
-          #{employee.jobRole}
-        </p:column> 
-        <p:column headerText="Salary" sortBy="#{employee.salary}" filterBy="#{employee.salary}">
-          #{employee.salary}
-        </p:column> 
-      </p:dataTable>
-    </h:form>
+    <ui:composition template="template.xhtml">
+      <ui:define name="title">All Employees</ui:define>
+      <ui:define name="heading">All Employees</ui:define>
+
+      <ui:define name="content">
+        <h:form>
+          <p:dataTable value="#{allEmployeesPageBean.allEmployees}" var="employee"
+            binding="#{allEmployeesPageBean.dataTable}">
+            <p:column headerText="First Name" sortBy="#{employee.firstName}" filterBy="#{employee.firstName}">
+              <h:commandLink action="#{allEmployeesPageBean.showEmployee}">
+                #{employee.firstName}
+              </h:commandLink>
+            </p:column> 
+            <p:column headerText="Surname" sortBy="#{employee.surname}" filterBy="#{employee.surname}">
+              <h:outputLink value="employeeDetail2.jsf">
+                <f:param name="employeeId" value="#{employee.id}" />
+                #{employee.surname}
+              </h:outputLink>
+            </p:column> 
+            <p:column headerText="Job Role" sortBy="#{employee.jobRole}" filterBy="#{employee.jobRole}">
+              #{employee.jobRole}
+            </p:column> 
+            <p:column headerText="Salary" sortBy="#{employee.salary}" filterBy="#{employee.salary}">
+              <h:outputText value="#{employee.salary}" rendered="#{employee.salary lt  2000}">
+                <f:convertNumber type="currency" />
+              </h:outputText>
+            </p:column> 
+          </p:dataTable>
+
+          <ul>
+            <ui:repeat var="emp" value="#{allEmployeesPageBean.allEmployees}">
+              <li>#{emp.surname}</li>  
+            </ui:repeat>
+          </ul>
+        </h:form>
+      </ui:define>
+    </ui:composition>
   </h:body>
 </html>

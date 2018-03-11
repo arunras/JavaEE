@@ -1,21 +1,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+
   <h:body>
-    <h3>Add new Employee</h3>
-    <h:form>
-      <label>First Name</label>   
-      <h:inputText value="#{newEmployee.firstName}" />
-      <br />
-      <label>Surname</label>   
-      <h:inputText value="#{newEmployee.surname}" />
-      <br />
-      <label>Job Role</label>   
-      <h:inputText value="#{newEmployee.jobRole}" />
-      <br />
-      <label>Salary</label>   
-      <h:inputText value="#{newEmployee.salary}" />
-      <br />
-      <h:commandButton value="Save" action="#{newEmployee.createEmployee}" />
-    </h:form>
+    <ui:composition template="template.xhtml">
+      <ui:define name="title">Add a New Employee</ui:define>
+      <ui:define name="heading">Add a New Employee</ui:define>
+      <ui:define name="content">
+        <h:form>
+          <label>First Name</label>   
+          <h:inputText value="#{newEmployee.firstName}" />
+          <br />
+          <label>Surname</label>   
+          <h:inputText value="#{newEmployee.surname}" />
+          <br />
+          <label>Job Role</label>   
+          <h:inputText value="#{newEmployee.jobRole}" />
+          <br />
+          <label>Salary</label>   
+          <h:inputText id="salary" value="#{newEmployee.salary}" />
+          <h:message for="salary" style="color: red" />
+          <br />
+          <h:commandButton value="Save" action="#{newEmployee.createEmployee}" />
+        </h:form>
+      </ui:define>
+    </ui:composition>
   </h:body>
 </html>

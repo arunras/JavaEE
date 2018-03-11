@@ -11,6 +11,7 @@ import com.virtualpairprogrammers.employeemanagement.EmployeeManagementServiceLo
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 @ManagedBean(name="allEmployeesPageBean")
+@ViewScoped
 public class AllEmployeesPageBean {
   @EJB
   private EmployeeManagementServiceLocal service;
